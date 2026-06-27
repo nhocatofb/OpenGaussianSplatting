@@ -10,7 +10,7 @@ The codebase is intentionally small and readable — every component (model, ren
 
 - Clean modular architecture — models, renderers, losses, and optimizers are fully decoupled
 - Full 3DGS training pipeline on real COLMAP data (`apps/train_3d.py`)
-- Progressive Spherical Harmonics activation (degree 0 → 3 during training)
+- Progressive Spherical Harmonics activation (degree 0 → max_sh_degree during training)
 - Auto-configured hyperparameters based on scene scale, resolution, and available VRAM
 - PLY export compatible with common 3DGS viewers (SuperSplat, Gaussian Splatting Viewer)
 - Apache 2.0 licensed — commercial use permitted
@@ -176,7 +176,7 @@ python apps/train_3d.py \
     --output_dir path/to/output \
     --max_steps  30000 \
     --image_scale 0.5 \
-    --sh_degree  3
+    --sh_degree  0
 ```
 
 Training outputs:
@@ -193,7 +193,7 @@ from opengs.renderers import GsplatRenderer
 
 dataset  = ColmapDataset("path/to/scene", image_scale=0.5, device="cuda")
 xyz, rgb = dataset.get_point_cloud()
-model    = VanillaGaussian.from_pointcloud(xyz, rgb, max_sh_degree=3)
+model    = VanillaGaussian.from_pointcloud(xyz, rgb, max_sh_degree=0)
 renderer = GsplatRenderer(rasterize_mode="antialiased")
 
 img, info = renderer.render(
@@ -202,7 +202,7 @@ img, info = renderer.render(
     K=dataset.Ks[0:1],
     width=dataset.widths[0],
     height=dataset.heights[0],
-    active_sh_degree=3,
+    active_sh_degree=0,
 )
 ```
 

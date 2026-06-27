@@ -54,8 +54,8 @@ def parse_args():
                    help="Print loss and save a preview image every N steps")
     p.add_argument("--lambda_dssim", type=float, default=0.2,
                    help="Weight of DSSIM loss component (default: 0.2)")
-    p.add_argument("--sh_degree",   type=int, default=3, choices=[0, 1, 2, 3],
-                   help="Max SH degree for view-dependent color (0–3, default: 3). "
+    p.add_argument("--sh_degree",   type=int, default=0, choices=[0, 1, 2, 3],
+                   help="Max SH degree for view-dependent color (0–3, default: 0). "
                         "Lower = fewer parameters, faster training, less view-dependence. "
                         "0=RGB-only (3 floats/Gaussian), 3=full SH (48 floats/Gaussian).")
     return p.parse_args()
