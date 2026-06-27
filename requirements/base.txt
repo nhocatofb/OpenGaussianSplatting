@@ -1,0 +1,17 @@
+# ============================================================
+# base.txt — platform-independent runtime dependencies
+#
+# Do not install this file directly.
+# Use requirements/windows.txt or requirements/linux.txt instead.
+# ============================================================
+
+# Pin NumPy below 2.0 — numpy 2.x breaks PyTorch 2.2's C-API
+numpy==1.26.4
+
+# Utilities required by gsplat
+ninja        # parallel CUDA/C++ JIT compilation
+jaxtyping    # type annotation runtime used by gsplat
+rich         # terminal formatting used by gsplat
+
+# Image I/O for the dataset pipeline
+Pillow

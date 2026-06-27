@@ -1,0 +1,94 @@
+OpenGaussianSplatting
+Copyright 2026 OpenGaussianSplatting Contributors
+
+This project is licensed under the Apache License, Version 2.0.
+See the LICENSE file for the full license text.
+
+-------------------------------------------------------------------------------
+
+This software incorporates components from the following third-party projects.
+Their licenses are reproduced below as required by the Apache License 2.0.
+
+-------------------------------------------------------------------------------
+gsplat
+-------------------------------------------------------------------------------
+Repository : https://github.com/nerfstudio-project/gsplat
+License    : Apache License, Version 2.0
+Copyright  : Copyright 2025 Nerfstudio Team
+
+OpenGaussianSplatting uses gsplat as its core Gaussian rasterization backend
+(rasterization, DefaultStrategy for densification/pruning).
+The gsplat source code is NOT bundled in this repository; it is installed as
+a runtime dependency via pip.
+
+Full license text: https://github.com/nerfstudio-project/gsplat/blob/main/LICENSE
+
+-------------------------------------------------------------------------------
+PyTorch
+-------------------------------------------------------------------------------
+Repository : https://github.com/pytorch/pytorch
+License    : BSD 3-Clause License
+Copyright  : Copyright (c) 2016-Facebook, Inc (Adam Paszke)
+             Copyright (c) 2014-Facebook, Inc (Soumith Chintala)
+             Copyright (c) 2011-2014 Idiap Research Institute (Ronan Collobert)
+             Copyright (c) 2012-2014 Deepmind Technologies (Koray Kavukcuoglu)
+             Copyright (c) 2011-2012 NEC Laboratories America (Koray Kavukcuoglu)
+             Copyright (c) 2011-2013 NYU (Clement Farabet)
+             Copyright (c) 2006-2010 NEC Laboratories America (Ronan Collobert,
+                                     Leon Bottou, Iain Melvin, Jason Weston)
+             Copyright (c) 2006 Idiap Research Institute (Samy Bengio)
+             Copyright (c) 2001-2004 Idiap Research Institute (Ronan Collobert,
+                                     Samy Bengio, Johnny Mariethoz)
+
+Full license text: https://github.com/pytorch/pytorch/blob/main/LICENSE
+
+-------------------------------------------------------------------------------
+torchvision
+-------------------------------------------------------------------------------
+Repository : https://github.com/pytorch/vision
+License    : BSD 3-Clause License
+Copyright  : Copyright (c) Soumith Chintala 2016
+
+Full license text: https://github.com/pytorch/vision/blob/main/LICENSE
+
+-------------------------------------------------------------------------------
+NumPy
+-------------------------------------------------------------------------------
+Repository : https://github.com/numpy/numpy
+License    : BSD 3-Clause License
+Copyright  : Copyright (c) 2005-2024, NumPy Developers
+
+Full license text: https://github.com/numpy/numpy/blob/main/LICENSE.txt
+
+-------------------------------------------------------------------------------
+Pillow
+-------------------------------------------------------------------------------
+Repository : https://github.com/python-pillow/Pillow
+License    : HPND License (Historical Permission Notice and Disclaimer)
+Copyright  : Copyright (c) 1997-2011 by Secret Labs AB
+             Copyright (c) 1995-2011 by Fredrik Lundh
+             Copyright (c) 2010-2024 by Jeffrey A. Clark and contributors
+
+Full license text: https://github.com/python-pillow/Pillow/blob/main/LICENSE
+
+-------------------------------------------------------------------------------
+3D Gaussian Splatting (original paper / reference implementation)
+-------------------------------------------------------------------------------
+Repository : https://github.com/graphdeco-inria/gaussian-splatting
+License    : Gaussian Splatting Research License
+Copyright  : Copyright (C) 2023, Inria, GRAPHDECO research group
+
+NOTE: OpenGaussianSplatting does NOT use or bundle code from the original INRIA
+implementation. It re-implements the 3DGS algorithm independently using gsplat.
+The original paper is cited here for academic attribution only:
+
+  @article{kerbl3Dgaussians,
+    author    = {Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler,
+                 Thomas and Drettakis, George},
+    title     = {3D Gaussian Splatting for Real-Time Radiance Field Rendering},
+    journal   = {ACM Transactions on Graphics},
+    year      = {2023},
+    volume    = {42},
+    number    = {4},
+    url       = {https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/}
+  }

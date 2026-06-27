@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# ---------------------------------------------------------------------------
+# Project metadata  (PEP 621)
+# ---------------------------------------------------------------------------
+[project]
+name = "opengs"
+version = "0.1.0"
+description = "A modular, research-friendly 3D Gaussian Splatting framework"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+requires-python = ">=3.9"   # Python 3.10 is recommended; gsplat pre-built wheels for Windows target 3.10
+
+authors = [
+    { name = "OpenGaussianSplatting contributors" },
+]
+
+keywords = [
+    "gaussian splatting",
+    "3dgs",
+    "neural rendering",
+    "novel view synthesis",
+    "computer vision",
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Runtime dependencies.
+# IMPORTANT: torch, torchvision, and gsplat ship CUDA-specific wheels that are
+# NOT on the default PyPI index.  Use the platform-specific requirements files:
+#
+#   Windows : pip install -r requirements/windows.txt
+#   Linux   : pip install -r requirements/linux.txt
+#   Kaggle  : see README.md — Installation — Kaggle / Google Colab
+#
+# The version pins below are minimum guards only; they do not enforce CUDA variants.
+dependencies = [
+    "torch>=2.2.1",
+    "torchvision>=0.17.1",
+    # numpy <2.0 is required: numpy 2.x breaks PyTorch 2.2's C-API (causes import errors)
+    "numpy>=1.24.0,<2.0.0",
+    "Pillow>=9.0.0",
+    "gsplat>=1.5.2",
+    # gsplat hard dependencies (pulled in transitively, listed explicitly for clarity)
+    "jaxtyping",
+    "rich",
+    # ninja enables parallel CUDA/C++ JIT compilation inside gsplat
+    "ninja",
+]
+
+[project.optional-dependencies]
+# Development extras: testing + linting
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "ruff>=0.4.0",
+]
+
+# ---------------------------------------------------------------------------
+# Project URLs shown on PyPI
+# ---------------------------------------------------------------------------
+[project.urls]
+Homepage      = "https://github.com/nhocatofb/OpenGaussianSplatting"
+Repository    = "https://github.com/nhocatofb/OpenGaussianSplatting"
+"Bug Tracker" = "https://github.com/nhocatofb/OpenGaussianSplatting/issues"
+
+# ---------------------------------------------------------------------------
+# Setuptools config
+# ---------------------------------------------------------------------------
+[tool.setuptools.packages.find]
+# Auto-discover all packages under the repo root.
+# `apps/` contains standalone scripts, not an importable package, so exclude it.
+exclude = ["apps*", "tests*", "*.egg-info"]
+
+# ---------------------------------------------------------------------------
+# Ruff linter / formatter
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]   # pycodestyle errors/warnings + pyflakes + isort
+ignore = ["E501"]                # line length is handled by formatter, not lint
+
+# ---------------------------------------------------------------------------
+# Pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"

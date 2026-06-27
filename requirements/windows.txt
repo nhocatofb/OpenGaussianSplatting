@@ -1,0 +1,29 @@
+# ============================================================
+# windows.txt — Windows 10/11, Python 3.10, CUDA 12.1
+#
+# Install:
+#   pip install -r requirements/windows.txt
+#   pip install -e .
+#
+# Prerequisites:
+#   - Python 3.10 (required — gsplat pre-built wheels target Python 3.10)
+#   - NVIDIA driver supporting CUDA 12.1+ (check: nvidia-smi)
+#   - conda create -n opengs python=3.10 -y && conda activate opengs
+# ============================================================
+
+# PyTorch 2.2.1 CUDA 12.1 wheels from the official PyTorch index.
+# The +cu121 local-version suffix forces the CUDA build;
+# without it pip may resolve the CPU-only wheel from PyPI.
+--extra-index-url https://download.pytorch.org/whl/cu121
+torch==2.2.1+cu121
+torchvision==0.17.1+cu121
+torchaudio==2.2.1+cu121
+
+# Platform-independent base dependencies
+-r base.txt
+
+# gsplat pre-built wheel for Windows (Python 3.10 + PyTorch 2.2.1 + CUDA 12.1).
+# Compiling gsplat from source on Windows requires a full MSVC + CUDA toolchain
+# and is not recommended. Use this pre-built wheel instead.
+--extra-index-url https://docs.gsplat.studio/whl/pt22cu121
+gsplat==1.5.2
