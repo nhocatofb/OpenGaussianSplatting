@@ -250,8 +250,9 @@ The architecture is designed so that each component can be replaced independentl
 | Data source | `opengs/data/colmap.py` or add a new loader |
 | Hyperparameter logic | `opengs/utils/auto_config.py` |
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide on adding new components,
-coding conventions, and how to submit a pull request.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide: how to add a new model,
+renderer, loss, data loader, or optimizer, plug it into the pipeline, and coding
+conventions for pull requests.
 
 ---
 
